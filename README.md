@@ -1,2 +1,2 @@
 
-Create a blog from Django and deploy to pythonanywhere
+Create a blog following the Django Girls Tutorial and deploy to pythonanywhere

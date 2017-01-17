@@ -4,6 +4,7 @@ from django.utils import timezone
 from .models import Post
 from .forms import PostForm
 
+
 def post_list(request):
     posts = Post.objects.filter(
         published_date__lte=timezone.now()).order_by('published_date')
@@ -31,7 +32,6 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
-            # post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
@@ -70,5 +70,4 @@ def post_edit(request, pk):
 @login_required(login_url='/')
 def post_delete(request, pk):
     Post.objects.filter(pk=pk).delete()
-    # post = get_object_or_404(Post, pk=pk)  and request.user.is_authenticated()
     return redirect('post_list')
